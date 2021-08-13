@@ -95,18 +95,19 @@ if __name__ == '__main__':
     # ('word', 1),
     # ('appear', 1)]
     arr = []
-    file = open('../tagcloud/tag_file.txt', 'r')
+    file = open('./tagcloud/tag_file.txt', 'r')
     data = file.read().split('\r\n')
     for content in data:
         contents = validatecontent(content).split()
         for word in contents:
             arr.append(word)
     counts = Counter(arr).items()
+    print(counts)
 
     # 用一个时间来命名
     nowtime=time.strftime('%Y%H%M%S', time.localtime())
     # 设置字体大小
     tags = make_tags(counts, maxsize=int(fontsz))
     # 生成图片
-    create_tag_image(tags, '../tagcloud/' + str(nowtime) + '.png', size=(imglength, imgwidth), fontname=language,background=(int(rcolor), int(gcolor), int(bcolor)))
-    print(('已经储存至../tagcloud/' + str(nowtime) + '.png'))
+    create_tag_image(tags, './tagcloud/' + str(nowtime) + '.png', size=(imglength, imgwidth), fontname=language,background=(int(rcolor), int(gcolor), int(bcolor)))
+    print(('已经储存至./tagcloud/' + str(nowtime) + '.png'))
